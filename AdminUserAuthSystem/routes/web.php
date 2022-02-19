@@ -34,9 +34,18 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('login','AuthenticatedSessionController@store')->name('adminlogin');
     });
     Route::middleware('admin')->group(function () {
-        Route::get('dashboard','HomeController@index')->name('dashboard');  
+        Route::get('dashboard','HomeController@index')->name('dashboard'); 
+        //Hakkımızda
+        Route::get('admin.about',[\App\Http\Controllers\Admin\AboutController::class, 'index'])->name('admin_about'); 
+        Route::get('admin.about/add',[\App\Http\Controllers\Admin\AboutController::class, 'add'])->name('admin_about_add');
+        Route::post('admin.about/create',[\App\Http\Controllers\Admin\AboutController::class, 'create'])->name('admin_about_create');
+        Route::post('admin.about/update',[\App\Http\Controllers\Admin\AboutController::class, 'update'])->name('admin_about_update');
+        Route::get('admin.about/delete',[\App\Http\Controllers\Admin\AboutController::class, 'destroy'])->name('admin_about_delete');
+        Route::get('admin.about/show',[\App\Http\Controllers\Admin\AboutController::class, 'show'])->name('admin_about_show');
     });
     Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
 });
 Route::redirect('/admin','/admin/login');
+
+
 
