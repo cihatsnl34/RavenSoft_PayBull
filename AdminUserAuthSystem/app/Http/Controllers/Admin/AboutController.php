@@ -41,11 +41,13 @@ class AboutController extends Controller
      */
     public function add(StoreAboutRequest $request)
     {
+        
         DB::table('abouts')->insert([
             'title' => $request->input('title'),
             'description' => $request->input('description')
         ]);
         return redirect()->route('admin.admin_about');
+        
 
     }
 
