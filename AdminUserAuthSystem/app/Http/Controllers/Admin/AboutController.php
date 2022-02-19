@@ -29,22 +29,23 @@ class AboutController extends Controller
      * @return \Illuminate\Http\Response
      * @param  \App\Http\Requests\StoreAboutRequest  $request
      */
-    public function create(StoreAboutRequest $request)
+    public function create()
+    {
+       
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @param  \App\Http\Requests\StoreAboutRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function add(StoreAboutRequest $request)
     {
         DB::table('abouts')->insert([
             'title' => $request->input('title'),
             'description' => $request->input('description')
         ]);
         return redirect()->route('admin.admin_about');
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function add()
-    {
-        
 
     }
 

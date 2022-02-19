@@ -1,7 +1,7 @@
 @extends('admin/layouts.admin')
 
 @section("content")
-<form role="form" action="{{ route('admin.admin_about_create') }}" method="POST">
+<form role="form" action="{{ route('admin.admin_about_add') }}" method="POST">
     @csrf
     <div class="mt-10 py-16 px-6 border-2 border-gray-50 rounded-4xl">
       <div class="max-w-md mx-auto">
