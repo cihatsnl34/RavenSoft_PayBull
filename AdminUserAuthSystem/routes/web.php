@@ -13,6 +13,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+
+//Anasayfa
+Route::get('/home', [HomeController::class, 'index']);
 Route::get('/', function () {
     return view('welcome');
 });
@@ -35,7 +38,5 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     });
     Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
 });
+Route::redirect('/admin','/admin/login');
 
-//Anasayfa
-Route::redirect('/anasayfa','/home');
-Route::get('/home', [HomeController::class, 'index']);
