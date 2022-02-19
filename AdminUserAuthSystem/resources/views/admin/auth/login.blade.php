@@ -1,90 +1,63 @@
-<x-guest-layout>
-    <x-auth-card>
-
-        <x-slot name="logo">
-            <div class="pt-24 pb-64 xl:pt-52 lg:pb-80 bg-blueGray-100 text-center rounded-b-10xl">
-                <div class="container px-4 mx-auto">
-
-                    <h1 style="font-size:60pt;font-family:Verdana, Geneva, Tahoma, sans-serif;" class="mb-12 text-9xl md:text-10xl xl:text-11xl leading-tight font-heading font-medium">Paybull </h1>
-                    <p class="text-xl text-gray-400">Portal &amp; Takip Sistemi</p>
-                    <p class="text-xl text-gray-400">admin giriş ekranı</p>
-                </div>
-            </div>
-        </x-slot>
-        <div class="flex items-center justify-center mb-4">
-
-
-            <x-button style="background-color: transparent; color:black; border:1px solid #ECEDEF;" class="ml-3">
-                <a class="flex items-center justify-center py-5 px-5 border-2 border-gray-50 hover:border-gray-100 rounded-xl" href="#">
-                    <img class="w-6 h-6 mr-4" src="{{asset('assets')}}/admin/uinel-assets/images/sign-up/google.svg" alt="">
-                    <b>
-                        <p style="padding: 2px;" class="font-bold uppercase">Google</p>
-                    </b>
-                </a>
-            </x-button>
-            <x-button style="background-color: transparent; color:black; border:1px solid #ECEDEF;" class="ml-3">
-                <a class="flex items-center justify-center py-5 px-5 border-2 border-gray-50 hover:border-gray-100 rounded-xl" href="#">
-                    <img class="w-6 h-6 mr-4" src="{{asset('assets')}}/admin/uinel-assets/images/sign-up/apple.svg" alt="">
-                    <b>
-                        <p style="padding: 2px;" class="font-bold uppercase">Apple</p>
-                    </b>
-                </a>
-            </x-button>
-            <x-button style="background-color: transparent; color:black; border:1px solid #ECEDEF;" class="ml-3">
-                <a class="flex items-center justify-center py-5 px-5 border-2 border-gray-50 hover:border-gray-100 rounded-xl" href="#">
-                    <img class="w-6 h-6 mr-4" src="{{asset('assets')}}/admin/uinel-assets/images/sign-up/facebook.svg" alt="">
-                    <b>
-                        <p style="padding: 2px;" class="font-bold uppercase">Facebook</p>
-                    </b>
-                </a>
-            </x-button>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Page title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
+    <link rel="stylesheet" href="{{asset('assets')}}/adminLogin/css/tailwind/tailwind.min.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-tailwind.png">
+    <script src="{{asset('assets')}}/adminLogin/js/main.js"></script>
+  </head>
+  <body class="antialiased bg-body text-body font-body">
+    <div class=""> 
+    
+      <section class="pb-24"><div class="pt-24 pb-64 xl:pt-52 lg:pb-80 bg-blueGray-100 text-center rounded-b-10xl">
+          <div class="container px-4 mx-auto">
+            
+            <h2 class="mb-12 text-9xl md:text-10xl xl:text-11xl leading-tight font-heading font-medium">Paybull </h2>
+            <p class="text-xl text-gray-400">Portal &amp; Takip Sistemi</p>
+          </div>
         </div>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('admin.adminlogin') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Mail Adresi:')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+        <div class="container px-4 mx-auto">
+          <div class="-mt-52 max-w-4xl mx-auto py-10 px-8 bg-white rounded-4xl shadow-lg">
+            <div class="flex flex-wrap justify-center -mb-4 -mx-4">
+              <div class="w-full md:w-auto px-4 mb-4">
+                <a class="flex items-center justify-center py-5 px-5 border-2 border-gray-50 hover:border-gray-100 rounded-xl" href="#">
+                  <img class="w-6 h-6 mr-4" src="{{asset('assets')}}/adminLogin/uinel-assets/images/sign-up/google.svg" alt=""><p class="font-bold uppercase">Google</p>
+                </a>
+              </div>
+              <div class="w-full md:w-auto px-4 mb-4">
+                <a class="flex items-center justify-center py-5 px-5 border-2 border-gray-50 hover:border-gray-100 rounded-xl" href="#">
+                  <img class="w-6 h-6 mr-4" src="{{asset('assets')}}/adminLogin/uinel-assets/images/sign-up/apple.svg" alt=""><p class="font-bold uppercase">Apple</p>
+                </a>
+              </div>
+              <div class="w-full md:w-auto px-4 mb-4">
+                <a class="flex items-center justify-center py-5 px-5 border-2 border-gray-50 hover:border-gray-100 rounded-xl" href="#">
+                  <img class="w-6 h-6 mr-4" src="{{asset('assets')}}/adminLogin/uinel-assets/images/sign-up/facebook.svg" alt=""><p class="font-bold uppercase">Facebook</p>
+                </a>
+              </div>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Şifre:')" />
-
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <form method="post" action="{{ route('admin.adminlogin') }}"> 
+            <div class="mt-10 py-16 px-6 border-2 border-gray-50 rounded-4xl">
+               <div class="max-w-md mx-auto">
+                
+                @csrf
+                <input class="w-full mb-6 py-5 px-12 text-xl border-2 border-blue-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" id="email" name="email" type="email" placeholder="Your Email">
+                <input class="w-full mb-6 py-5 px-12 text-xl border-2 border-blue-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" type="password" placeholder="Password" required autocomplete="current-password" name="password" id="password">
+                <button type="submit" class="block py-5 px-10 mx-auto w-full md:max-w-max text-xl leading-6 text-white font-medium tracking-tighter font-heading text-center bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"><a  href="#">Giriş Yap</a></button>
+               </div>
             </div>
-
-            <!-- Remember Me
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Beni Hatırla') }}</span>
-                </label>
-            </div>
-             -->
-            <div class="flex items-center justify-center mt-4">
-                @if (Route::has('password.request'))
-                <!--
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                    {{ __('Şifrenizi unuttunuz mu?') }}
-                    </a>
-                -->
-                @endif
-
-                <x-button style="background-color: #2D60E6;" class="ml-3">
-                    {{ __('Giriş Yap') }}
-                </x-button>
-            </div>
-        </form>
-
-    </x-auth-card>
-</x-guest-layout>
+          </form>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{{asset('assets')}}/adminLogin/js/charts-demo.js"></script>    
+  </body>
+</html>
