@@ -44,8 +44,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
 
         Route::post('about/create',[\App\Http\Controllers\Admin\AboutController::class, 'create'])->name('admin_about_create');
-        Route::post('about/update',[\App\Http\Controllers\Admin\AboutController::class, 'update'])->name('admin_about_update');
-        Route::get('about/delete',[\App\Http\Controllers\Admin\AboutController::class, 'destroy'])->name('admin_about_delete');
+        Route::get('about/edit/{id}',[\App\Http\Controllers\Admin\AboutController::class, 'edit'])->name('admin_about_edit');
+        Route::post('about/update/{id}',[\App\Http\Controllers\Admin\AboutController::class, 'update'])->name('admin_about_update');
+        Route::get('about/delete/{id}',[\App\Http\Controllers\Admin\AboutController::class, 'destroy'])->name('admin_about_delete');
         Route::get('about/show',[\App\Http\Controllers\Admin\AboutController::class, 'show'])->name('admin_about_show');
     });
     Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');

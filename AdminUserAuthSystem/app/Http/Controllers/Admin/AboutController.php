@@ -79,9 +79,11 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function edit(About $about)
+    public function edit(About $about,$id)
     {
-        //
+        $AboutData = About::find($id);
+        $aboutList = DB::table('abouts')->get();
+        return view('admin.about.about_edit',['AboutData'=>$AboutData,'aboutList'=>$aboutList]);
     }
 
     /**
@@ -91,9 +93,13 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAboutRequest $request, About $about)
+    public function update(UpdateAboutRequest $request, About $about,$id)
     {
-        //
+        $AboutData = About::find($id);
+        $AboutData->title = $request->input('title');
+        $AboutData->description = $request->input('description');
+        $AboutData->save();
+        return redirect()->route('admin.admin_about');
     }
 
     /**
@@ -102,8 +108,9 @@ class AboutController extends Controller
      * @param  \App\Models\About  $about
      * @return \Illuminate\Http\Response
      */
-    public function destroy(About $about)
+    public function destroy(About $about,$id)
     {
-        //
+        DB::table('abouts')->where('id','=',$id)->delete();
+        return redirect()->route('admin.admin_about');
     }
 }
