@@ -43,6 +43,12 @@
                    @else
                    <a href="{{route('admin.login')}}">Admin Login </a>
                    @endauth
+                   @auth('personal')
+                   <a href="{{route('personal.dashboard')}}" style="color:#edf2f7;">Admin dashboard </a>
+                   @else
+                   <a href="{{route('personal.login')}}">Peronal Login </a>
+                   @endauth
+                   
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">

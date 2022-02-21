@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Admin;
-class AdminSeeder extends Seeder
+use App\Models\Personal;
+class PersonalSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,14 +13,11 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        
-        $admin = [
-            'name' => 'Admin',
-            'email' => 'adminn@admin.com',
+        $personal = [
+            'name' => 'Personal',
+            'email' => 'personal@personal.com',
             'password' => bcrypt('12345')
         ];
-        Admin::create($admin);
-        
-      
+        Personal::create($personal);
     }
 }

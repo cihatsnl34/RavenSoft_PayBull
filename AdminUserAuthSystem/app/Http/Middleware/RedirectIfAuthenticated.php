@@ -25,7 +25,10 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 if($guard == 'admin'){
                     return redirect(RouteServiceProvider::ADMIN_HOME);
-                  }
+                }
+                else if($guard == 'personal'){
+                    return redirect(RouteServiceProvider::PERSONAL_HOME);
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }

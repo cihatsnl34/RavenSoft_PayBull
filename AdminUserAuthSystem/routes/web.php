@@ -71,3 +71,18 @@ Route::redirect('/admin','/admin/login');
 
 
 
+//Personal
+
+Route::namespace('Personal')->prefix('personal')->name('personal.')->group(function ()
+{
+    Route::namespace('Auth')->middleware('guest:personal')->group(function () 
+    {
+        Route::get('personalLogin','AuthenticatedSessionController@create')->name('login');
+        Route::post('personalLogin','AuthenticatedSessionController@store')->name('personallogin');
+    });
+    Route::middleware('personal')->group(function () {
+        Route::get('dashboard','HomeController@index')->name('dashboard');
+    });
+    Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
+
+});

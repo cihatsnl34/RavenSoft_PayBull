@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 21 Şub 2022, 12:16:21
+-- Üretim Zamanı: 21 Şub 2022, 16:00:14
 -- Sunucu sürümü: 10.4.22-MariaDB
 -- PHP Sürümü: 8.1.2
 
@@ -57,7 +57,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$so64f1Fdh9ESMtmVZzWlPu98jgmKo9fTY70PwyByQvpCRizZTfT5a', NULL, '2022-02-21 07:25:20', '2022-02-21 07:25:20');
+(1, 'Admin', 'admi2n@admin.com', NULL, '$2y$10$DmtbcWgcB6TYVtXPZVNCWegnUUUoY8ecTt/OtVdKIUjxUlJOL.Xl2', NULL, '2022-02-21 11:18:56', '2022-02-21 11:18:56'),
+(3, 'Admin', 'adminn@admin.com', NULL, '$2y$10$HMmCiKmSU16wVHSDmFMJX.s.fRMkXNuGlQg2zkPqK4qHd1FOP7xrK', NULL, '2022-02-21 11:20:11', '2022-02-21 11:20:11');
 
 -- --------------------------------------------------------
 
@@ -74,18 +75,11 @@ CREATE TABLE `applications` (
   `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `companyName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Beklemede',
-  `personelId` int(11) DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `personelId` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Tablo döküm verisi `applications`
---
-
-INSERT INTO `applications` (`id`, `fullname`, `email`, `cardDetails`, `streetNumber`, `city`, `country`, `companyName`, `status`, `personelId`, `created_at`, `updated_at`) VALUES
-(1, 'mahmud', 'cihat@hotmail.com', '31212312321', '2131', 'deneme', 'deneme', 'deneme', 'beklemede', NULL, NULL, '2022-02-21 08:14:00');
 
 -- --------------------------------------------------------
 
@@ -120,13 +114,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(22, '2014_10_12_000000_create_users_table', 1),
-(23, '2014_10_12_100000_create_password_resets_table', 1),
-(24, '2019_08_19_000000_create_failed_jobs_table', 1),
-(25, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(26, '2022_02_18_133008_create_admins_table', 1),
-(27, '2022_02_19_154016_create_abouts_table', 1),
-(28, '2022_02_21_094137_create_applications_table', 1);
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2022_02_18_133008_create_admins_table', 1),
+(6, '2022_02_19_154016_create_abouts_table', 1),
+(7, '2022_02_21_094137_create_applications_table', 1),
+(8, '2022_02_21_134545_create_personals_table', 1);
 
 -- --------------------------------------------------------
 
@@ -139,6 +134,30 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `personals`
+--
+
+CREATE TABLE `personals` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `personals`
+--
+
+INSERT INTO `personals` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Personal', 'personal@personal.com', NULL, '$2y$10$rO5H3Rx4sYS7xLMjkalaZeDLUDeRfeGdYVC8r13roDGTylMhsQ2di', NULL, '2022-02-21 11:20:11', '2022-02-21 11:20:11');
 
 -- --------------------------------------------------------
 
@@ -220,6 +239,13 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Tablo için indeksler `personals`
+--
+ALTER TABLE `personals`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personals_email_unique` (`email`);
+
+--
 -- Tablo için indeksler `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -248,13 +274,13 @@ ALTER TABLE `abouts`
 -- Tablo için AUTO_INCREMENT değeri `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `failed_jobs`
@@ -266,7 +292,13 @@ ALTER TABLE `failed_jobs`
 -- Tablo için AUTO_INCREMENT değeri `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `personals`
+--
+ALTER TABLE `personals`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `personal_access_tokens`
