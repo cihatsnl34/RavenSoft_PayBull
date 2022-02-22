@@ -28,6 +28,7 @@ require __DIR__.'/auth.php';
 
 
 //Admin
+Route::redirect('/admin','/admin/login');
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::namespace('Auth')->middleware('guest:admin')->group(function () {
         Route::get('login','AuthenticatedSessionController@create')->name('login');
@@ -58,21 +59,33 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('application/add', function () {
             return view('admin.application.application_add');
         });
-
+        Route::get('application/approve/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'approve'])->name('admin_application_approve');
         Route::get('application/edit/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'edit'])->name('admin_application_edit');
         Route::post('application/update/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'update'])->name('admin_application_update');
         Route::get('application/delete/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'destroy'])->name('admin_application_delete');
         
+        //ajax
+        Route::get('getInfo',[\App\Http\Controllers\Admin\ApplicationController::class, 'getAppInfo'])->name('get_app_info');
+
+        //personal bilgileri
+        
+        Route::get('personals',[\App\Http\Controllers\Admin\PersonalsController::class, 'index'])->name('admin_personals'); 
+        Route::post('personals/add',[\App\Http\Controllers\Admin\PersonalsController::class, 'store'])->name('admin_personals_add');
+        Route::get('personals/add', function () {
+            return view('admin.personals.personals_add');
+            
+        });
+        Route::get('personals/delete/{id}',[\App\Http\Controllers\Admin\PersonalsController::class, 'destroy'])->name('admin_personals_delete');
 
     });
-    Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
+    Route::get('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
 });
-Route::redirect('/admin','/admin/login');
+
 
 
 
 //Personal
-
+Route::redirect('/personal','/personal/personalLogin');
 Route::namespace('Personal')->prefix('personal')->name('personal.')->group(function ()
 {
     Route::namespace('Auth')->middleware('guest:personal')->group(function () 
@@ -82,6 +95,11 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
     });
     Route::middleware('personal')->group(function () {
         Route::get('dashboard','HomeController@index')->name('dashboard');
+
+
+        //Başvurular
+        Route::get('application/edit/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'edit'])->name('personal_application_edit');
+
     });
     Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
 

@@ -19,6 +19,35 @@ class ApplicationController extends Controller
         
         return view('admin.application.application',['applicationList'=>$applicationList]);
     }
+    public function getAppInfo()
+    {
+        $applicationList = DB::select('select * from applications');
+        $tamamlananSayisi = 0;
+        $beklenenSayisi = 0;
+        $evrakBeklenenSayisi =0;
+
+        //todo: change status in database to inteeger and make a table to them
+        foreach ($applicationList as $value) {
+            if ($value->status == "Onaylandı") {
+                $tamamlananSayisi+= 1;
+            }
+            elseif($value->status == "beklemede"){
+                $beklenenSayisi += 1;
+            }
+            elseif($value->status == "EvrakBekleniyor"){
+                $evrakBeklenenSayisi += 1;
+            }
+        }
+
+        $msg  = [
+            'tamamlanan' => $tamamlananSayisi,
+            'evrakBekleyen' => $evrakBeklenenSayisi,
+            'beklenen' => $beklenenSayisi,
+        ];
+
+        return response()->json(array('msg'=> $msg ), 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -72,6 +101,14 @@ class ApplicationController extends Controller
         $ApplicationData = Application::find($id);
         $applicationList = DB::table('applications')->get();
         return view('admin.application.application_edit',['ApplicationData'=>$ApplicationData,'applicationList'=>$applicationList]);
+    }
+
+    public function approve(Application $application, $id)
+    {
+        $ApplicationData = Application::find($id);
+        $ApplicationData->status = "Onaylandı";
+        $ApplicationData->save();
+        return redirect()->route('admin.admin_application');
     }
 
     /**

@@ -15,6 +15,9 @@
   <script src="{{asset('assets')}}/admin/js/main.js"></script>
   @yield('css')
   @yield('javascript')
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 
 <body class="antialiased bg-body text-body font-body">
@@ -22,9 +25,12 @@
   @include('admin._header')
 
   @yield('content')
-  @include('admin._footer')
-  @yield('footer')
 
+  @include('admin._footer')
+
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="{{asset('assets')}}/admin/js/charts-demo.js"></script>
 </body>
 
 </html>

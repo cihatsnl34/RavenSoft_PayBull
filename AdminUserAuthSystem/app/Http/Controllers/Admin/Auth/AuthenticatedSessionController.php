@@ -31,6 +31,9 @@ class AuthenticatedSessionController extends Controller
         
         $request->authenticate();
 
+        //TODO: edit this part to be dynamic and get the admin name from db and store it
+        session(['username' => 'Admin']);
+
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::ADMIN_HOME);

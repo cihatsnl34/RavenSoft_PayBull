@@ -23,6 +23,7 @@
         <div class="container px-4 mx-auto">
 
           <h2 class="mb-12 text-9xl md:text-10xl xl:text-11xl leading-tight font-heading font-medium">Paybull </h2>
+          <p class="text-xl text-gray-400">Admin</p>
           <p class="text-xl text-gray-400">Portal &amp; Takip Sistemi</p>
         </div>
       </div>
@@ -62,7 +63,7 @@
                 @csrf
                 <input class="w-full mb-6 py-5 px-12 text-xl border-2 border-blue-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" id="email" name="email" type="email" placeholder="Your Email">
                 <input class="w-full mb-6 py-5 px-12 text-xl border-2 border-blue-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" type="password" placeholder="Password" required autocomplete="current-password" name="password" id="password">
-                <button type="submit" class="block py-5 px-10 mx-auto w-full md:max-w-max text-xl leading-6 text-white font-medium tracking-tighter font-heading text-center bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"><a href="#">Giriş Yap</a></button>
+                <button type="submit" class="block py-5 px-10 mx-auto w-full md:max-w-max text-xl leading-6 text-white font-medium tracking-tighter font-heading text-center bg-blue-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl">Giriş Yap</button>
               </div>
             </div>
           </form>
