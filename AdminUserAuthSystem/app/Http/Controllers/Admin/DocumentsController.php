@@ -7,6 +7,7 @@ use App\Models\Documents;
 use Illuminate\Http\Request;
 use App\Models\Application;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 class DocumentsController extends Controller
 {
     /**
@@ -27,6 +28,7 @@ class DocumentsController extends Controller
     public function create($applications_id)
     {
         $data = Application::find($applications_id);
+        $files = DB::table('documents')->where('applications_id',$applications_id);
         return view('admin.documents.documents_add',['data'=>$data]);
     }
 
