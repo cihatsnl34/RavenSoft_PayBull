@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 23 Şub 2022, 18:58:28
+-- Üretim Zamanı: 23 Şub 2022, 21:38:38
 -- Sunucu sürümü: 10.4.22-MariaDB
 -- PHP Sürümü: 8.1.2
 
@@ -108,6 +108,18 @@ CREATE TABLE `documents` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Tablo döküm verisi `documents`
+--
+
+INSERT INTO `documents` (`id`, `applications_id`, `firmaYetkiliKimlik`, `digerYetkiliKimlik`, `adresBelgesi`, `imzaSirküleri`, `vergiLevhasi`, `created_at`, `updated_at`) VALUES
+(1, 15, 'documents1/dBoW4k2KVXzA9ySbFZLsm7FdIC14EEi4F8lHbbN7.jpg', 'documents1/pPfGQqyOnXXK00ZZ3Yp8FVvoBpQjHRoousT8xSs6.jpg', 'documents1/u9HNSg0cAH6JfqGo3PuEQtLc73rmHD9sRwC7gVci.jpg', 'documents1/YExylrva7PCXeUgLuBp2pj4B87MpZJrS3MH7YKfE.jpg', 'documents1/eNpDp9VcKiXTGEwZpw2gTl9M2Sfo5JGHm1C4tSya.jpg', '2022-02-23 16:39:33', '2022-02-23 16:39:33'),
+(4, 15, 'documents1/Pq8ukgXrwTglA1EyNG1o6MKtyQy2d8blw9nA5zPU.pdf', 'documents1/1E7pCr8BIwmL7lPLBdGHy6vA4WJ1A4kA7xHcihmQ.pdf', 'documents1/LtwOFn2UMojinw4xfYilPyDanKd629CkKArwx5AN.pdf', 'documents1/4tG5VZzHeni1KeqpGtAda2gY4qOXpVZtYeqAXwhK.pdf', 'documents1/LlxbGVUdvNaN4UOQeL2vUiguAd1nZVXmgyHWrUPz.pdf', '2022-02-23 16:57:13', '2022-02-23 16:57:13'),
+(5, 15, 'photos/Z9OrXs44OYDgEwYndCTec6692SuJBdaLUDvSTiUv.pdf', 'photos/SwdlkcGFUYUlSFQWeUBfvudIKmdsmgyZRDcQutc8.pdf', 'photos/w96PcRMBxfL7C3sM8w8vNz9B0zNUmlSsUmkzegV6.pdf', 'photos/7yLlSC2FEp0p7zFq2Jv5bFqq380YFdCT4q2HnYcj.pdf', 'photos/RmS1griPODYOAMFGqM0QbnE2Uu78dGRbVmSHbaY3.pdf', '2022-02-23 17:06:24', '2022-02-23 17:06:24'),
+(6, 15, 'documents1/p2Io9bgKWCFhOIvYwEF926V9xO9A4kNuYVENEiLW.pdf', 'documents1/c9uWMPZnUVohSSW3joPTyKIGQjcSO3kSS7wOWeDi.pdf', 'documents1/T17HJm1tTHWANWiOKedmXajNcP66EEoWLH9UI8o6.jpg', 'documents1/fCGVa5jZTO63BzHpcW7N7eVBf8S47j0IPbhgtMtr.jpg', 'documents1/caWjqk1jmKML4nkDF81ez29VPN7eyPB4aGMCnuK3.jpg', '2022-02-23 17:07:58', '2022-02-23 17:07:58'),
+(7, 15, '15/ji36vQHKsgTOhqNZKoXr5HlE4yEReNdDDdsG8g3G.pdf', '15/pEDfpMW4FUvA9eZJq8yC0Wsk9YBXilhsPz6fXov7.pdf', '15/EOvhXeGChsck3T8ibq61TME9ionwlh6RhraU7zG7.pdf', '15/sYvjWg87RFciwGzFneI11aLPRzNF4cgANnCcXxEL.pdf', '15/LCR5EpNgdUQCmC1bZIcHdSL6iJdwL59PoLljpqat.pdf', '2022-02-23 17:13:00', '2022-02-23 17:13:00'),
+(8, 16, '16/RSS1qW4huzOtjhh4owhr1WMiVpbbPHPa8RWt2s6m.pdf', '16/3QLQ8rexAJa8Kxz0SNMSEutPqyR8MkcIjnzMmEsK.jpg', '16/Mtw5NKUYTPnX4RcCPncgYZtGYWHQmcg06Oyz0hH0.pdf', '16/ezsodE2dQwMb4PJSev1jauFjAyZpbatvhH8GxEAm.jpg', '16/UoS2id6PAHFfD2yTXg9sEOGoRMBDn1B4XI7aX5rv.pdf', '2022-02-23 17:13:31', '2022-02-23 17:13:31');
 
 -- --------------------------------------------------------
 
@@ -324,7 +336,7 @@ ALTER TABLE `applications`
 -- Tablo için AUTO_INCREMENT değeri `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `failed_jobs`

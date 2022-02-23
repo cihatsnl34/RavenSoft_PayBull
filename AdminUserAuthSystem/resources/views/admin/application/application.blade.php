@@ -15,6 +15,7 @@
               <th class="pb-3 font-medium">Updated</th>
               <th class="pb-3 font-medium">Status</th>
               <th class="pb-3 font-medium">Company Name</th>
+              <th class="pb-3 font-medium">Documents</th>
               <th class="pb-3 font-medium">Personel Id</th>
               <th class="pb-3 font-medium">Action</th></tr>
           </thead>
@@ -36,6 +37,7 @@
               <td>
                 <span class="inline-block py-1 px-2 text-purple-500 bg-purple-50 rounded-full">{{$rs->companyName}}</span>
               </td>
+              <td class="font-medium"><a href ="{{route('admin.admin_documents_create',['applications_id'=>$rs->id])}}"><img width="25" src="{{asset('assets')}}/admin/icon/document.png"></a></td>
               <td class="font-medium">{{$rs->personelId}}</td>
               <td>
                 <a class="inline-block mr-2" href="{{route('admin.admin_application_edit',['id' =>$rs->id])}}">
