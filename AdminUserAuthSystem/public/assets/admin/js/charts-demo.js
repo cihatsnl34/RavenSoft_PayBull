@@ -13,8 +13,6 @@ $.ajax({
         updateCharts();
     },
 });
-
-
 setInterval(function () {
     $.ajax({
         type: "GET",
@@ -26,8 +24,28 @@ setInterval(function () {
             updateCharts();
         },
     });
+    $.ajax({
+        type: "GET",
+        url: "/personal/getInfo",
+        success: function (data) {
+            demoOptions["radial-bar-subscriptions"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
+            demoOptions["radial-bar-payments"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
+            demoOptions["radial-bar-inventory"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+            updateCharts();
+        },
+    });
 }, 15000);
 
+$.ajax({
+    type: "GET",
+    url: "/personal/getInfo",
+    success: function (data) {
+        demoOptions["radial-bar-subscriptions"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
+        demoOptions["radial-bar-payments"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
+        demoOptions["radial-bar-inventory"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+        updateCharts();
+    },
+});
 let demoOptions = {
     "area-small-blue": {
         series: [

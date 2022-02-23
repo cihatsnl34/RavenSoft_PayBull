@@ -1,6 +1,8 @@
 @extends('admin/layouts.admin')
 
 @section("content")
+<a href="{{route('admin.admin_application_add')}}" class="block py-5 px-10 ml-4 md:max-w-max text-xl leading-6 text-white font-medium tracking-tighter font-heading text-center bg-indigo-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl">Yeni Başvuru Ekle</a>
+  <br>
 <section class="py-8">
     <div class="container px-4 mx-auto">
       <div class="p-4 mb-6 bg-white shadow rounded overflow-x-auto">
@@ -19,6 +21,7 @@
                 </div>
               </td>
               <td class="font-medium">{{$rs->created_at}}</td>
+              <td class="font-medium">{{$rs->update_at}}</td>
               <td> 
                 <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">{{$rs->status}}</span>
               </td>

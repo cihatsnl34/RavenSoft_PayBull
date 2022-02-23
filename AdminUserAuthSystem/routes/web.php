@@ -98,8 +98,19 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
 
 
         //Başvurular
+        Route::get('application/delete/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'destroy'])->name('personal_application_delete');
+        Route::post('application/update/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'update'])->name('personal_application_update');
         Route::get('application/edit/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'edit'])->name('personal_application_edit');
+        Route::get('application/eddit/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'eddit'])->name('personal_application_eddit');
+        Route::post('application/add',[\App\Http\Controllers\Personal\HomeController::class, 'store'])->name('personal_application_add');
+        Route::get('application/add', function () {
+            return view('personal.application.application_add');
+        });
+        //ajax
+        Route::get('getInfo',[\App\Http\Controllers\Personal\HomeController::class, 'getAppInfo']);
 
+        
+        
     });
     Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
 

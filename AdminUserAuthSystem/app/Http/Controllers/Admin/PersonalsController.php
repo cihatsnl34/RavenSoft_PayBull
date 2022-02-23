@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
+use Carbon\Carbon;
 class PersonalsController extends Controller
 {
     public function index()
@@ -26,13 +26,16 @@ class PersonalsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
-
+        $currentTime = Carbon::now();
         $user = [
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'created_at'=>$currentTime,
+            
         ];
 
         DB::table('personals')->insert($user);

@@ -7,6 +7,7 @@ use App\Models\About;
 use App\Http\Requests\StoreAboutRequest;
 use App\Http\Requests\UpdateAboutRequest;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class AboutController extends Controller
 {
     /**
@@ -41,10 +42,11 @@ class AboutController extends Controller
      */
     public function add(StoreAboutRequest $request)
     {
-        
+        $currentTime = Carbon::now();
         DB::table('abouts')->insert([
             'title' => $request->input('title'),
-            'description' => $request->input('description')
+            'description' => $request->input('description'),
+            'created_at'=>$currentTime
         ]);
         return redirect()->route('admin.admin_about');
         
@@ -95,9 +97,11 @@ class AboutController extends Controller
      */
     public function update(UpdateAboutRequest $request, About $about,$id)
     {
+        $update = Carbon::now();
         $AboutData = About::find($id);
         $AboutData->title = $request->input('title');
         $AboutData->description = $request->input('description');
+        $AboutData->update_at= $update;
         $AboutData->save();
         return redirect()->route('admin.admin_about');
     }

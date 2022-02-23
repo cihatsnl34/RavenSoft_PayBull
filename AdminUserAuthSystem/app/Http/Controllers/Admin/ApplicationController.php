@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Application;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class ApplicationController extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -66,6 +68,7 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
+        $currentTime = Carbon::now();
         DB::table('applications')->insert([
             'fullname' => $request->input('fullname'),
             'email' => $request->input('email'),
@@ -73,7 +76,8 @@ class ApplicationController extends Controller
             'streetNumber' => $request->input('streetNumber'),
             'city' => $request->input('city'),
             'country' => $request->input('country'),
-            'companyName' => $request->input('companyName')
+            'companyName' => $request->input('companyName'),
+            'created_at'=>$currentTime
             
         ]);
         return redirect()->route('admin.admin_application');
@@ -106,7 +110,7 @@ class ApplicationController extends Controller
     public function approve(Application $application, $id)
     {
         $ApplicationData = Application::find($id);
-        $ApplicationData->status = "Onaylandı";
+        $ApplicationData->status = "Evrak Bekleme";
         $ApplicationData->save();
         return redirect()->route('admin.admin_application');
     }
@@ -120,6 +124,7 @@ class ApplicationController extends Controller
      */
     public function update(Request $request,Application $application, $id)
     {
+        $update = Carbon::now();
         $ApplicationData = Application::find($id);
         $ApplicationData->fullname = $request->input('fullname');
         $ApplicationData->email = $request->input('email');
@@ -128,6 +133,7 @@ class ApplicationController extends Controller
         $ApplicationData->city = $request->input('city');
         $ApplicationData->country = $request->input('country');
         $ApplicationData->companyName = $request->input('companyName');
+        $ApplicationData->update_at= $update;
         $ApplicationData->save();
         return redirect()->route('admin.admin_application');
     }

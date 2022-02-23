@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\PersonalLoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,7 +30,11 @@ class AuthenticatedSessionController extends Controller
     public function store(PersonalLoginRequest $request)
     {
         $request->authenticate();
-
+        
+        $email = $request->input('email');
+        $user = DB::select('select * from personals where email = ?', [$email])[0];
+        session(['username' =>$user->name]);
+        session(['id' => $user->id]);
         $request->session()->regenerate();
 
         return redirect()->intended(RouteServiceProvider::PERSONAL_HOME);

@@ -10,9 +10,14 @@
                             <span>Ana Portal personal</span>
                         </a>
                     </li>
+                    <li class="mr-8 2xl:mr-14">
+                        <a class="flex items-center font-heading font-medium text-white hover:text-blueGray-100" href="#">
+                           
+                        </a>
+                    </li>
                 </ul>
                 <div class="hidden xl:flex items-center">
-
+                    <p class="text-white">{{session('username')}}</p>
                     <form method="POST" action="{{ route('personal.logout') }}">
                         @csrf
 
