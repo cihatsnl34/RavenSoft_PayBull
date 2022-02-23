@@ -8,7 +8,15 @@
       <div class="p-4 mb-6 bg-white shadow rounded overflow-x-auto">
         <table class="table-auto w-full">
           <thead>
-            <tr class="text-xs text-gray-500 text-left"><th class="pl-6 pb-3 font-medium">ID</th><th class="pb-3 font-medium">Name</th><th class="pb-3 font-medium">Joined</th><th class="pb-3 font-medium">Status</th><th class="pb-3 font-medium">Company Name</th><th class="pb-3 font-medium">Action</th></tr>
+            <tr class="text-xs text-gray-500 text-left">
+              <th class="pl-6 pb-3 font-medium">ID</th>
+              <th class="pb-3 font-medium">Name</th>
+              <th class="pb-3 font-medium">Joined</th>
+              <th class="pb-3 font-medium">Updated</th>
+              <th class="pb-3 font-medium">Status</th>
+              <th class="pb-3 font-medium">Company Name</th>
+              <th class="pb-3 font-medium">Personel Id</th>
+              <th class="pb-3 font-medium">Action</th></tr>
           </thead>
           <tbody>
             @foreach ($applicationList as $rs)
@@ -21,13 +29,14 @@
                 </div>
               </td>
               <td class="font-medium">{{$rs->created_at}}</td>
-              <td class="font-medium">{{$rs->update_at}}</td>
+              <td class="font-medium">{{$rs->updated_at}}</td>
               <td> 
                 <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">{{$rs->status}}</span>
               </td>
               <td>
                 <span class="inline-block py-1 px-2 text-purple-500 bg-purple-50 rounded-full">{{$rs->companyName}}</span>
               </td>
+              <td class="font-medium">{{$rs->personelId}}</td>
               <td>
                 <a class="inline-block mr-2" href="{{route('admin.admin_application_edit',['id' =>$rs->id])}}">
                   <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -23,7 +23,9 @@
   </div>
 </section>
 <section class="py-8">
+  <center>
   <a href="{{route('personal.personal_application_add')}}" class="block py-5 px-10 ml-4 md:max-w-max text-xl leading-6 text-white font-medium tracking-tighter font-heading text-center bg-indigo-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl">Yeni Başvuru Ekle</a>
+  </center>
   <br>
   <div class="container px-4 mx-auto">
     <h1>Basvurular</h1>
@@ -37,6 +39,7 @@
             <th class="pb-3 font-medium">Updated</th>
             <th class="pb-3 font-medium">Status</th>
             <th class="pb-3 font-medium">Company Name</th>
+            <th class="pb-3 font-medium">Personal Id</th>
             <th class="pb-3 font-medium">Action</th>
           </tr>
         </thead>
@@ -58,6 +61,7 @@
             <td>
               <span class="inline-block py-1 px-2 text-purple-500 bg-purple-50 rounded-full">{{$rs->companyName}}</span>
             </td>
+            <td class="font-medium">{{$rs->personelId}}</td>
             <td>
               <a class="inline-block mr-2" href="{{route('personal.personal_application_eddit',['id' =>$rs->id])}}">
                 <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

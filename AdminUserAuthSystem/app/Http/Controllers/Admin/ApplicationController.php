@@ -77,7 +77,8 @@ class ApplicationController extends Controller
             'city' => $request->input('city'),
             'country' => $request->input('country'),
             'companyName' => $request->input('companyName'),
-            'created_at'=>$currentTime
+            'created_at'=>$currentTime,
+            'personelId' =>session('id')
             
         ]);
         return redirect()->route('admin.admin_application');

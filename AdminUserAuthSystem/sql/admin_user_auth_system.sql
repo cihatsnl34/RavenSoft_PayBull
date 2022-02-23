@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 22, 2022 at 06:23 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Anamakine: 127.0.0.1
+-- Üretim Zamanı: 23 Şub 2022, 18:58:28
+-- Sunucu sürümü: 10.4.22-MariaDB
+-- PHP Sürümü: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db-paybull`
+-- Veritabanı: `admin_user_auth_system`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `abouts`
+-- Tablo için tablo yapısı `abouts`
 --
 
 CREATE TABLE `abouts` (
@@ -38,7 +38,7 @@ CREATE TABLE `abouts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
+-- Tablo için tablo yapısı `admins`
 --
 
 CREATE TABLE `admins` (
@@ -53,7 +53,7 @@ CREATE TABLE `admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `admins`
+-- Tablo döküm verisi `admins`
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -63,7 +63,7 @@ INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `r
 -- --------------------------------------------------------
 
 --
--- Table structure for table `applications`
+-- Tablo için tablo yapısı `applications`
 --
 
 CREATE TABLE `applications` (
@@ -82,17 +82,37 @@ CREATE TABLE `applications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `applications`
+-- Tablo döküm verisi `applications`
 --
 
 INSERT INTO `applications` (`id`, `fullname`, `email`, `cardDetails`, `streetNumber`, `city`, `country`, `companyName`, `status`, `personelId`, `created_at`, `updated_at`) VALUES
-(1, 'Mahmud Omer', 'mailhosting@gmail.com', 'dfgdgdfg', '149.28.42.246', 'İzmir', 'turkey', 'sdfsdf', 'Onaylandı', NULL, NULL, '2022-02-21 21:43:20'),
-(2, 'cihat', 'efwe@gmail.com', '5345345345', '5fdg4', 'fgderfg', 'dfrgedr', 'dfgedrfge', 'beklemede', NULL, NULL, NULL);
+(15, 'Cihat Şenel', 'dahds@hotmail.com', '213213', 'asdas', 'Esenyurt', 'Türkiye', 'Celâl Bayar Üniversitesi', 'EvrakBekleniyor', NULL, '2022-02-23 10:46:46', '2022-02-23 10:46:55'),
+(16, 'asdas', 'asdasdafs@hotmail.com', '412098', 'Pınar mahallesi 1505 sokak no 5 daire 2 istanbul/esenyurt', 'Esenyurt', 'Türkiye', 'Celâl Bayar Üniversitesi', 'EvrakBekleniyor', NULL, '2022-02-23 10:52:42', '2022-02-23 10:52:58'),
+(17, 'deneme', 'dene2me@hotmail.com', '22213', 'sadasd', 'Esenyurt', 'Türkiye', 'Celâl Bayar Üniversitesi', 'beklemede', 3, '2022-02-23 13:56:28', NULL),
+(18, 'asdas', 'csasay@hotmail.com', '21312', 'adsfasdfasfasf', 'Esenyurt', 'Türkiye', 'Celâl Bayar Üniversitesi', 'beklemede', 1, '2022-02-23 14:01:55', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Tablo için tablo yapısı `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `applications_id` int(11) NOT NULL,
+  `firmaYetkiliKimlik` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `digerYetkiliKimlik` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `adresBelgesi` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imzaSirküleri` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vergiLevhasi` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -108,7 +128,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Tablo için tablo yapısı `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -118,7 +138,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Tablo döküm verisi `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -129,12 +149,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2022_02_18_133008_create_admins_table', 1),
 (6, '2022_02_19_154016_create_abouts_table', 1),
 (7, '2022_02_21_094137_create_applications_table', 1),
-(8, '2022_02_21_134545_create_personals_table', 1);
+(8, '2022_02_21_134545_create_personals_table', 1),
+(9, '2022_02_23_174832_create_documents_table', 2),
+(10, '2022_02_23_175422_documents', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Tablo için tablo yapısı `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -146,7 +168,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personals`
+-- Tablo için tablo yapısı `personals`
 --
 
 CREATE TABLE `personals` (
@@ -161,18 +183,18 @@ CREATE TABLE `personals` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `personals`
+-- Tablo döküm verisi `personals`
 --
 
 INSERT INTO `personals` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Personal', 'personal@personal.com', NULL, '$2y$10$rO5H3Rx4sYS7xLMjkalaZeDLUDeRfeGdYVC8r13roDGTylMhsQ2di', NULL, '2022-02-21 11:20:11', '2022-02-21 11:20:11'),
-(2, 'cihat', 'perso@gmail.com', NULL, '$2y$10$CiZiGaKOZVBDal9jxkChL.y1GULW2GS/BxhG1oHLCHJ2uhI9jshWy', NULL, NULL, NULL),
-(4, 'cihat', 'persosd@gmail.com', NULL, '$2y$10$EMCmhy/YKzGHHk4jeLJJ7Ob3JnjKBzRwD07SJPt5PKFe0iNYWCusS', NULL, NULL, NULL);
+(4, 'asdas', 'asdasd@mail.com', NULL, '$2y$10$flW06JN5ZQ/pPnyleUaB7O6P3Ng512P6T3UQeyOu/OW5m0Rdl8eZC', NULL, '2022-02-23 07:53:04', NULL),
+(5, 'adssadasd', 'asdasd@gmail.com', NULL, '$2y$10$1vZvKG5eLJf7ORAOnYpzpeginVCbFdODMndxgQz4XcF9np6whg2pC', NULL, '2022-02-23 07:56:37', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
+-- Tablo için tablo yapısı `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -190,7 +212,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Tablo için tablo yapısı `users`
 --
 
 CREATE TABLE `users` (
@@ -205,31 +227,24 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'cihat', 'perso@gmail.com', NULL, '$2y$10$gD.pfJ83Zn8lT7wQdo7zuO846bbz2epBjlHFm5XIVvmNLeEkuuyA6', NULL, '2022-02-22 02:19:51', '2022-02-22 02:19:51');
-
---
--- Indexes for dumped tables
+-- Dökümü yapılmış tablolar için indeksler
 --
 
 --
--- Indexes for table `abouts`
+-- Tablo için indeksler `abouts`
 --
 ALTER TABLE `abouts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `admins`
+-- Tablo için indeksler `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `admins_email_unique` (`email`);
 
 --
--- Indexes for table `applications`
+-- Tablo için indeksler `applications`
 --
 ALTER TABLE `applications`
   ADD PRIMARY KEY (`id`),
@@ -237,33 +252,39 @@ ALTER TABLE `applications`
   ADD UNIQUE KEY `applications_carddetails_unique` (`cardDetails`);
 
 --
--- Indexes for table `failed_jobs`
+-- Tablo için indeksler `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `migrations`
+-- Tablo için indeksler `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Tablo için indeksler `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `personals`
+-- Tablo için indeksler `personals`
 --
 ALTER TABLE `personals`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personals_email_unique` (`email`);
 
 --
--- Indexes for table `personal_access_tokens`
+-- Tablo için indeksler `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -271,63 +292,69 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `users`
+-- Tablo için indeksler `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
 --
 
 --
--- AUTO_INCREMENT for table `abouts`
+-- Tablo için AUTO_INCREMENT değeri `abouts`
 --
 ALTER TABLE `abouts`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `admins`
+-- Tablo için AUTO_INCREMENT değeri `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `applications`
+-- Tablo için AUTO_INCREMENT değeri `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- Tablo için AUTO_INCREMENT değeri `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- Tablo için AUTO_INCREMENT değeri `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `personals`
+-- Tablo için AUTO_INCREMENT değeri `personals`
 --
 ALTER TABLE `personals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `personal_access_tokens`
+-- Tablo için AUTO_INCREMENT değeri `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
