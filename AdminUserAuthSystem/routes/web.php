@@ -64,6 +64,13 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('application/update/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'update'])->name('admin_application_update');
         Route::get('application/delete/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'destroy'])->name('admin_application_delete');
         
+         //Evraklar
+
+         Route::get('documents',[\App\Http\Controllers\Admin\DocumentsController::class, 'index'])->name('admin_documents'); 
+         Route::post('documents/add/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'store'])->name('admin_documents_add');
+         Route::get('documents/create/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'create'])->name('admin_documents_create');
+         Route::get('documents/delete/{id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'destroy'])->name('admin_documents_delete');
+         
         //ajax
         Route::get('getInfo',[\App\Http\Controllers\Admin\ApplicationController::class, 'getAppInfo'])->name('get_app_info');
 
