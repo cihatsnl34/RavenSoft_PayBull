@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Response;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,8 +70,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
          Route::get('documents',[\App\Http\Controllers\Admin\DocumentsController::class, 'index'])->name('admin_documents'); 
          Route::post('documents/add/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'store'])->name('admin_documents_add');
          Route::get('documents/create/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'create'])->name('admin_documents_create');
-         Route::get('documents/delete/{id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'destroy'])->name('admin_documents_delete');
-         
+         Route::get('documents/delete/{id}/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'destroy'])->name('admin_documents_delete');
+
+         Route::get('documents/zip/{applications_id}',[\App\Http\Controllers\ZipController::class, 'zipFile'])->name('admin_documents_download');
         //ajax
         Route::get('getInfo',[\App\Http\Controllers\Admin\ApplicationController::class, 'getAppInfo'])->name('get_app_info');
 
@@ -116,6 +118,14 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
         //ajax
         Route::get('getInfo',[\App\Http\Controllers\Personal\HomeController::class, 'getAppInfo']);
 
+        //Evraklar
+
+        Route::get('documents',[\App\Http\Controllers\Personal\DocumentsController::class, 'index'])->name('personal_documents'); 
+        Route::post('documents/add/{applications_id}',[\App\Http\Controllers\Personal\DocumentsController::class, 'store'])->name('personal_documents_add');
+        Route::get('documents/create/{applications_id}',[\App\Http\Controllers\Personal\DocumentsController::class, 'create'])->name('personal_documents_create');
+        Route::get('documents/delete/{id}/{applications_id}',[\App\Http\Controllers\Personal\DocumentsController::class, 'destroy'])->name('personal_documents_delete');
+
+        Route::get('documents/zip/{applications_id}',[\App\Http\Controllers\ZipController::class, 'zipFile'])->name('personal_documents_download');
         
         
     });

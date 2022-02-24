@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Personal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Documents;
@@ -29,7 +29,7 @@ class DocumentsController extends Controller
     {
         $data = Application::find($applications_id);
         $files = DB::table('documents')->where('applications_id',$applications_id)->get();
-        return view('admin.documents.documents_add',['data'=>$data,'files'=>$files]);
+        return view('personal.documents.documents_add',['data'=>$data,'files'=>$files]);
         
     }
 
@@ -57,15 +57,11 @@ class DocumentsController extends Controller
         $data->imzaSirküleri =$request->file('imzaSirküleri')->storeAs($filename,'imzaSirküleri.pdf');
         $data->vergiLevhasi = $request->file('vergiLevhasi')->storeAs($filename,'vergiLevhasi.pdf');
         $data->save();
-        return redirect()->route('admin.admin_documents_create',['applications_id'=>$applications_id]);
+        return redirect()->route('personal.personal_documents_create',['applications_id'=>$applications_id]);
         
     }
     
-    public function download($applications_id)
-    {
-        return Storage::download('maxresdefault.jpg');
-        
-    }
+    
     /**
      * Display the specified resource.
      *
@@ -110,6 +106,6 @@ class DocumentsController extends Controller
     {
         $data = Documents::Find($id);
         $data->delete();
-        return redirect()->route('admin.admin_documents_create',['applications_id'=>$applications_id]);
+        return redirect()->route('personal.personal_documents_create',['applications_id'=>$applications_id]);
     }
 }
