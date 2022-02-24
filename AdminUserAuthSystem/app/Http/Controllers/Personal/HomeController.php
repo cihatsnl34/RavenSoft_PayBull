@@ -12,15 +12,22 @@ class HomeController extends Controller
 {
     public function index()
     {
-
+        $statuses = [
+            '1' => 'Beklemede',
+            '2' => 'Evrak Bekleniyor',
+            '3' => 'Evrak İnceleniyor',
+            '4' => 'Tamamlandı',
+            '5' => 'Reddedildi',
+            '6' => 'Evrak Eksik',
+        ];
         $applicationList = DB::select('select * from applications');
-        return view('personal.dashboard', ['applicationList' => $applicationList]);
+        return view('personal.dashboard', ['applicationList' => $applicationList, 'stat'=> $statuses]);
     }
 
     public function edit(Application $application, $id)
     {
         $ApplicationData = Application::find($id);
-        $ApplicationData->status = "EvrakBekleniyor";
+        $ApplicationData->status_id = 2; // 2-> evrak bekleniyor
         $ApplicationData->save();
         return redirect()->route('personal.dashboard');
     }
@@ -73,18 +80,35 @@ class HomeController extends Controller
         $applicationList = DB::select('select * from applications');
         $tamamlananSayisi = 0;
         $beklenenSayisi = 0;
-        $evrakBeklenenSayisi =0;
+        $evrakBeklenenSayisi = 0;
+        $evrakIncelenenSayisi = 0;
+        $reddedilenSayisi = 0;
+        $eksikEvrakSayisi = 0;
 
-        //todo: change status in database to integer and make a table to them
         foreach ($applicationList as $value) {
-            if ($value->status == "Onaylandı") {
-                $tamamlananSayisi+= 1;
-            }
-            elseif($value->status == "beklemede"){
-                $beklenenSayisi += 1;
-            }
-            elseif($value->status == "EvrakBekleniyor"){
-                $evrakBeklenenSayisi += 1;
+
+            switch ($value->status_id) {
+                case 1:         //1 -> beklemede
+                    $beklenenSayisi += 1;
+                    break;
+                case 2:         //2-> evrak bekleniyor
+                    $evrakBeklenenSayisi += 1;
+                    break;
+                case 3:         //3-> Evrak İnceleniyor
+                    $evrakIncelenenSayisi += 1;
+                    break;
+                case 4:         //4 -> tamamlandi
+                    $tamamlananSayisi += 1;
+                    break;
+                case 5:         //5 -> red edildi
+                    $reddedilenSayisi += 1;
+                    break;
+                case 6:         //6 -> eksik evrak
+                    $eksikEvrakSayisi += 1;
+                    break;
+                default:
+                    # code...
+                    break;
             }
         }
 
@@ -92,6 +116,9 @@ class HomeController extends Controller
             'tamamlanan' => $tamamlananSayisi,
             'evrakBekleyen' => $evrakBeklenenSayisi,
             'beklenen' => $beklenenSayisi,
+            'evrakIncelenen' => $evrakIncelenenSayisi,
+            'redEdilen' => $reddedilenSayisi,
+            'eksikEvrak' => $eksikEvrakSayisi,
         ];
 
         return response()->json(array('msg'=> $msg ), 200);

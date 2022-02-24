@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Application;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+
 class ApplicationController extends Controller
 
 {
@@ -17,27 +18,54 @@ class ApplicationController extends Controller
      */
     public function index()
     {
+        $statuses = [
+            '1' => 'Beklemede',
+            '2' => 'Evrak Bekleniyor',
+            '3' => 'Evrak İnceleniyor',
+            '4' => 'Tamamlandı',
+            '5' => 'Reddedildi',
+            '6' => 'Evrak Eksik',
+        ];
         $applicationList = DB::select('select * from applications');
+  
         
-        return view('admin.application.application',['applicationList'=>$applicationList]);
+        return view('admin.application.application', ['applicationList' => $applicationList, 'stat'=> $statuses]);
     }
     public function getAppInfo()
     {
         $applicationList = DB::select('select * from applications');
+
         $tamamlananSayisi = 0;
         $beklenenSayisi = 0;
-        $evrakBeklenenSayisi =0;
+        $evrakBeklenenSayisi = 0;
+        $evrakIncelenenSayisi = 0;
+        $reddedilenSayisi = 0;
+        $eksikEvrakSayisi = 0;
 
-        //todo: change status in database to inteeger and make a table to them
         foreach ($applicationList as $value) {
-            if ($value->status == "Onaylandı") {
-                $tamamlananSayisi+= 1;
-            }
-            elseif($value->status == "beklemede"){
-                $beklenenSayisi += 1;
-            }
-            elseif($value->status == "EvrakBekleniyor"){
-                $evrakBeklenenSayisi += 1;
+
+            switch ($value->status_id) {
+                case 1:         //1 -> beklemede
+                    $beklenenSayisi += 1;
+                    break;
+                case 2:         //2-> evrak bekleniyor
+                    $evrakBeklenenSayisi += 1;
+                    break;
+                case 3:         //3-> Evrak İnceleniyor
+                    $evrakIncelenenSayisi += 1;
+                    break;
+                case 4:         //4 -> tamamlandi
+                    $tamamlananSayisi += 1;
+                    break;
+                case 5:         //5 -> red edildi
+                    $reddedilenSayisi += 1;
+                    break;
+                case 6:         //6 -> eksik evrak
+                    $eksikEvrakSayisi += 1;
+                    break;
+                default:
+                    # code...
+                    break;
             }
         }
 
@@ -45,9 +73,12 @@ class ApplicationController extends Controller
             'tamamlanan' => $tamamlananSayisi,
             'evrakBekleyen' => $evrakBeklenenSayisi,
             'beklenen' => $beklenenSayisi,
+            'evrakIncelenen' => $evrakIncelenenSayisi,
+            'redEdilen' => $reddedilenSayisi,
+            'eksikEvrak' => $eksikEvrakSayisi,
         ];
 
-        return response()->json(array('msg'=> $msg ), 200);
+        return response()->json(array('msg' => $msg), 200);
     }
 
     /**
@@ -77,9 +108,9 @@ class ApplicationController extends Controller
             'city' => $request->input('city'),
             'country' => $request->input('country'),
             'companyName' => $request->input('companyName'),
-            'created_at'=>$currentTime,
-            'personelId' =>session('id')
-            
+            'created_at' => $currentTime,
+            'personelId' => session('id')
+
         ]);
         return redirect()->route('admin.admin_application');
     }
@@ -101,17 +132,17 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Application $application,$id)
+    public function edit(Application $application, $id)
     {
         $ApplicationData = Application::find($id);
         $applicationList = DB::table('applications')->get();
-        return view('admin.application.application_edit',['ApplicationData'=>$ApplicationData,'applicationList'=>$applicationList]);
+        return view('admin.application.application_edit', ['ApplicationData' => $ApplicationData, 'applicationList' => $applicationList]);
     }
 
     public function approve(Application $application, $id)
     {
         $ApplicationData = Application::find($id);
-        $ApplicationData->status = "Evrak Bekleme";
+        $ApplicationData->status_id = 2;
         $ApplicationData->save();
         return redirect()->route('admin.admin_application');
     }
@@ -123,7 +154,7 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Application $application, $id)
+    public function update(Request $request, Application $application, $id)
     {
         $update = Carbon::now();
         $ApplicationData = Application::find($id);
@@ -134,7 +165,7 @@ class ApplicationController extends Controller
         $ApplicationData->city = $request->input('city');
         $ApplicationData->country = $request->input('country');
         $ApplicationData->companyName = $request->input('companyName');
-        $ApplicationData->update_at= $update;
+        $ApplicationData->update_at = $update;
         $ApplicationData->save();
         return redirect()->route('admin.admin_application');
     }
@@ -145,9 +176,9 @@ class ApplicationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Application $application,$id)
+    public function destroy(Application $application, $id)
     {
-        DB::table('applications')->where('id','=',$id)->delete();
+        DB::table('applications')->where('id', '=', $id)->delete();
         return redirect()->route('admin.admin_application');
     }
 }

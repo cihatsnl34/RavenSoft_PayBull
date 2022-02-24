@@ -56,7 +56,7 @@
             <td class="font-medium">{{$rs->created_at}}</td>
             <td class="font-medium">{{$rs->updated_at}}</td>
             <td> 
-              <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">{{$rs->status}}</span>
+              <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">{{$stat[$rs->status_id]}}</span>
             </td>
             <td>
               <span class="inline-block py-1 px-2 text-purple-500 bg-purple-50 rounded-full">{{$rs->companyName}}</span>
