@@ -138,3 +138,6 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
 Route::get('send-mail/{id}', [\App\Http\Controllers\MailControllere::class, 'send'])->name('send_email');
 Route::get('send-mail-p/{id}', [\App\Http\Controllers\MailControllere::class, 'sendPersonal'])->name('send_email_perso');
 Route::get('evrak/yukle/{id}', [\App\Http\Controllers\MailControllere::class, 'upload'])->name('evrak_yukle');
+Route::post('evrak/yukle/{applications_id}',[\App\Http\Controllers\MailControllere::class, 'store'])->name('documents_add');
+Route::get('evrak/sil/{id}',[\App\Http\Controllers\MailControllere::class, 'destroy'])->name('documents_delete');
+Route::get('evrak/approve/{applications_id}',[\App\Http\Controllers\MailControllere::class, 'approve'])->name('documents_approve');

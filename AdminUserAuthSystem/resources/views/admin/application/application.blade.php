@@ -1,8 +1,10 @@
 @extends('admin/layouts.admin')
 
 @section("content")
+<center>
 <a href="{{route('admin.admin_application_add')}}" class="block py-5 px-10 ml-4 md:max-w-max text-xl leading-6 text-white font-medium tracking-tighter font-heading text-center bg-indigo-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl">Yeni Başvuru Ekle</a>
-  <br>
+</center>
+<br>
 <section class="py-8">
     <div class="container px-4 mx-auto">
       <div class="p-4 mb-6 bg-white shadow rounded overflow-x-auto">
