@@ -80,7 +80,7 @@ class MailControllere extends Controller
     {
         $ApplicationData = Application::find($applications_id);
         $ApplicationData->status_id = 3;
-        $ApplicationData->save();
+        $ApplicationData->save();    
         return back();
     }
    

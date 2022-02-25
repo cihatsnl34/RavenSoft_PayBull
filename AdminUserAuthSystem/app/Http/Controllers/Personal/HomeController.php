@@ -21,7 +21,8 @@ class HomeController extends Controller
             '6' => 'Evrak Eksik',
         ];
         $applicationList = DB::select('select * from applications');
-        return view('personal.dashboard', ['applicationList' => $applicationList, 'stat'=> $statuses]);
+        $statusList = DB::table('statuses')->get();
+        return view('personal.dashboard', ['applicationList' => $applicationList, 'stat'=> $statuses,'statusList'=>$statusList]);
     }
 
     public function edit(Application $application, $id)
@@ -123,6 +124,14 @@ class HomeController extends Controller
         ];
 
         return response()->json(array('msg'=> $msg ), 200);
+    }
+    public function completed(Application $application, $id)
+    {
+        $ApplicationData = Application::find($id);
+        $ApplicationData->status_id = 4;
+        $ApplicationData->save();
+        
+        return redirect()->route('admin.admin_application');
     }
 
 }

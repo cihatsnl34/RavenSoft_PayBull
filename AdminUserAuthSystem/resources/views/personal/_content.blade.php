@@ -41,8 +41,10 @@
             <th class="pb-3 font-medium">Name</th>
             <th class="pb-3 font-medium">Joined</th>
             <th class="pb-3 font-medium">Updated</th>
-            <th class="pb-3 font-medium">Status</th>
             <th class="pb-3 font-medium">Company Name</th>
+            <th class="pb-3 font-medium">Status</th>
+            <th class="pb-3 font-medium"></th>
+            <th class="pb-3 font-medium">Durum belirleme</th>
             <th class="pb-3 font-medium">Documents</th>
             <th class="pb-3 font-medium">Personel Id</th>
             <th class="pb-3 font-medium">Action</th></tr>
@@ -59,12 +61,28 @@
             </td>
             <td class="font-medium">{{$rs->created_at}}</td>
             <td class="font-medium">{{$rs->updated_at}}</td>
-            <td> 
-              <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">{{$stat[$rs->status_id]}}</span>
-            </td>
             <td>
               <span class="inline-block py-1 px-2 text-purple-500 bg-purple-50 rounded-full">{{$rs->companyName}}</span>
             </td>
+            <td> 
+              <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">{{$stat[$rs->status_id]}}</span>
+            </td>
+            <form action="{{ route('personal.personal_application_completed',['id'=>$rs->id]) }}" method="POST">
+              @csrf
+            <td>
+              <select name='status'>
+              @foreach($statusList as $sL)
+              <option value='{{$sL->id}}'>{{$sL->title}}</option>
+              @endforeach
+              </select>
+
+            </td>
+            <td>
+              <a class="inline-block mr-2" href="{{route('personal.personal_application_completed',['id' =>$rs->id])}}">
+              <button  type="submit" class="block py-2 px-4 mx-3 w-full md:max-w-max text-l leading-4 text-white font-medium tracking-tighter font-heading text-center bg-red-500 hover:bg-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl">ONAYLA</button>
+              </a>
+            </td>
+            </form>
             <td class="font-medium"><a href ="{{route('personal.personal_documents_create',['applications_id'=>$rs->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100 height=700')">
               <img width="25" src="{{asset('assets')}}/admin/icon/document.png"></a>
             </td>

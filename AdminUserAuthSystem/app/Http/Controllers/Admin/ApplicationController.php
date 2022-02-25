@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Application;
+use App\Models\Status;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -29,7 +30,8 @@ class ApplicationController extends Controller
         $applicationList = DB::select('select * from applications');
   
         
-        return view('admin.application.application', ['applicationList' => $applicationList, 'stat'=> $statuses]);
+        $statusList = DB::table('statuses')->get();
+        return view('admin.application.application', ['applicationList' => $applicationList, 'stat'=> $statuses,'statusList'=>$statusList]);
     }
     public function getAppInfo()
     {
@@ -114,7 +116,7 @@ class ApplicationController extends Controller
         ]);
         return redirect()->route('admin.admin_application');
     }
-
+   
     /**
      * Display the specified resource.
      *
@@ -181,5 +183,13 @@ class ApplicationController extends Controller
     {
         DB::table('applications')->where('id', '=', $id)->delete();
         return redirect()->route('admin.admin_application');
+    }
+    public function completed(Request $request,Application $application,$id)
+    {
+        $ApplicationData = Application::find($id);
+        $ApplicationData->status_id = $request->input('status');
+        $ApplicationData->save();
+        
+        return redirect()->route('admin.admin_application',);
     }
 }

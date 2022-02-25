@@ -65,6 +65,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('application/edit/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'edit'])->name('admin_application_edit');
         Route::post('application/update/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'update'])->name('admin_application_update');
         Route::get('application/delete/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'destroy'])->name('admin_application_delete');
+        Route::post('application/completed/{id}',[\App\Http\Controllers\Admin\ApplicationController::class, 'completed'])->name('admin_application_completed');
         
          //Evraklar
 
@@ -118,6 +119,7 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
         Route::get('application/add', function () {
             return view('personal.application.application_add');
         });
+        Route::post('application/completed/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'completed'])->name('personal_application_completed');
         //ajax
         Route::get('getInfo',[\App\Http\Controllers\Personal\HomeController::class, 'getAppInfo']);
 
