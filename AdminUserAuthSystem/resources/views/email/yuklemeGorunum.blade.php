@@ -44,7 +44,7 @@
           <thead>
             <tr class="text-xs text-gray-500 text-left">
               <th class="pl-6 pb-3 font-medium">ID</th>
-              <th class="pl-6 pb-3 font-medium">Başvuru Id</th>
+              <th class="pl-6 pb-3 font-medium">Başvuru Id</th> 
               <th class="pb-3 font-medium">Documents Download</th>
               <th class="pb-3 font-medium">Action</th></tr>
           </thead>

@@ -72,6 +72,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
          Route::post('documents/add/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'store'])->name('admin_documents_add');
          Route::get('documents/create/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'create'])->name('admin_documents_create');
          Route::get('documents/delete/{id}/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'destroy'])->name('admin_documents_delete');
+         
+         Route::get('documents/approve/{applications_id}',[\App\Http\Controllers\Admin\DocumentsController::class, 'approve'])->name('admin_documents_approve');
 
          Route::get('documents/zip/{applications_id}',[\App\Http\Controllers\ZipController::class, 'zipFile'])->name('admin_documents_download');
         //ajax
@@ -125,7 +127,7 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
         Route::post('documents/add/{applications_id}',[\App\Http\Controllers\Personal\DocumentsController::class, 'store'])->name('personal_documents_add');
         Route::get('documents/create/{applications_id}',[\App\Http\Controllers\Personal\DocumentsController::class, 'create'])->name('personal_documents_create');
         Route::get('documents/delete/{id}/{applications_id}',[\App\Http\Controllers\Personal\DocumentsController::class, 'destroy'])->name('personal_documents_delete');
-
+        Route::get('documents/approve/{applications_id}',[\App\Http\Controllers\Personal\DocumentsController::class, 'approve'])->name('personal_documents_approve');
         Route::get('documents/zip/{applications_id}',[\App\Http\Controllers\ZipController::class, 'zipFile'])->name('personal_documents_download');
         
         
@@ -135,4 +137,4 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
 
 Route::get('send-mail/{id}', [\App\Http\Controllers\MailControllere::class, 'send'])->name('send_email');
 Route::get('send-mail-p/{id}', [\App\Http\Controllers\MailControllere::class, 'sendPersonal'])->name('send_email_perso');
-Route::get('evrak/yukle/{id}', [\App\Http\Controllers\MailControllere::class, 'upload']);
+Route::get('evrak/yukle/{id}', [\App\Http\Controllers\MailControllere::class, 'upload'])->name('evrak_yukle');

@@ -60,7 +60,14 @@ class DocumentsController extends Controller
         return redirect()->route('personal.personal_documents_create',['applications_id'=>$applications_id]);
         
     }
-    
+    public function approve(Application $application, $applications_id)
+    {
+        $ApplicationData = Application::find($applications_id);
+        $ApplicationData->status_id = 3;
+        $ApplicationData->save();
+        
+        return redirect()->route('personal.personal_documents_create',['applications_id'=>$applications_id]);
+    }
     
     /**
      * Display the specified resource.

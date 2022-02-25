@@ -11,14 +11,14 @@ class MailControllere extends Controller
 {
     public function send($id)
     {
+        $ApplicationData = Application::find($id);
         $details = [
             'title' => 'Paybull Evrak Yükleme',
             'body' => 'Başvurunuz kabul edilmiştir. Lütfen aşağıdaki linke tıklayarak evrakları yükleyebilirsiniz.',
             //TODO: edit the link below after host the prog.
             'link' => 'http://127.0.0.1:8000/evrak/yukle/'.$id
         ];
-    
-        Mail::to('mhmoud.omar3@gmail.com')->send(new \App\Mail\EvrakEklemeMail($details));
+        Mail::to($ApplicationData->email)->send(new \App\Mail\EvrakEklemeMail($details));
     
        // dd("Email gönderildi!");
        return redirect()->route('admin.admin_application');
@@ -26,6 +26,7 @@ class MailControllere extends Controller
 
     public function sendPersonal($id)
     {
+        $ApplicationData = Application::find($id);
         $details = [
             'title' => 'Paybull Evrak Yükleme',
             'body' => 'Başvurunuz kabul edilmiştir. Lütfen aşağıdaki linke tıklayarak evrakları yükleyebilirsiniz.',
@@ -33,7 +34,7 @@ class MailControllere extends Controller
             'link' => 'http://127.0.0.1:8000/evrak/yukle/'.$id
         ];
     
-        Mail::to('mhmoud.omar3@gmail.com')->send(new \App\Mail\EvrakEklemeMail($details));
+        Mail::to($ApplicationData->mail)->send(new \App\Mail\EvrakEklemeMail($details));
     
        // dd("Email gönderildi!");
        return redirect()->route('personal.dashboard');

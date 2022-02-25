@@ -66,7 +66,16 @@ class DocumentsController extends Controller
         return Storage::download('maxresdefault.jpg');
         
     }
-    /**
+    public function approve(Application $application, $applications_id)
+    {
+        $ApplicationData = Application::find($applications_id);
+        $ApplicationData->status_id = 3;
+        $ApplicationData->save();
+        
+        return redirect()->route('admin.admin_documents_create',['applications_id'=>$applications_id]);
+    }
+
+    /** 
      * Display the specified resource.
      *
      * @param  \App\Models\Documents  $documents
