@@ -17,8 +17,8 @@
               <th class="pb-3 font-medium">Updated</th>
               <th class="pb-3 font-medium">Company Name</th>
               <th class="pb-3 font-medium">Status</th>
-              <th class="pb-3 font-medium"></th>
               <th class="pb-3 font-medium">Durum belirleme</th>
+              <th class="pb-3 font-medium"></th>
               <th class="pb-3 font-medium">Documents</th>
               <th class="pb-3 font-medium">Personel Id</th>
               <th class="pb-3 font-medium">Action</th></tr>
