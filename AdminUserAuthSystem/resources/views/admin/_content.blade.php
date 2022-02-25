@@ -2,22 +2,26 @@
       <div class="container px-4 mx-auto">
         <div class="flex flex-wrap -mx-3">
           <div class="w-full md:w-1/2 lg:w-1/3 px-3 mb-6 lg:mb-0">
-            <div class="pt-12 pb-20 px-8 md:px-12 lg:px-16 bg-white rounded-3xl">
-              <div class="chart" data-type="radial-bar-subscriptions"></div>
+            <div class="md:px-12 lg:px-16 bg-white rounded-3xl">
+              <div class="chart" data-type="radial-bar-beklenen"></div>
+              <div class="chart" data-type="radial-bar-tamamlanan"></div>
             </div>
           </div>
           <div class="w-full md:w-1/2 lg:w-1/3 px-3 mb-6 lg:mb-0">
-            <div class="pt-12 pb-20 px-8 md:px-12 lg:px-16 bg-white rounded-3xl">
-              <div class="chart" data-type="radial-bar-payments"></div>
+            <div class="md:px-12 lg:px-16 bg-white rounded-3xl">
+              <div class="chart" data-type="radial-bar-evrakBekleyen"></div>
+              <div class="chart" data-type="radial-bar-eksikEvrak"></div>
             </div>
           </div>
           <div class="w-full lg:w-1/3 px-3">
-            <div class="pt-12 pb-20 px-8 md:px-12 lg:px-16 bg-white rounded-3xl">
-              <div class="chart" data-type="radial-bar-inventory"></div>
+            <div class="md:px-12 lg:px-16 bg-white rounded-3xl">
+              <div class="chart" data-type="radial-bar-evrakIncelenen"></div>
+              <div class="chart" data-type="radial-bar-redEdilen"></div>
             </div>
           </div>
         </div>
       </div>
+      
     </section>
     <!--
     <section class="py-8 bg-blueGray-50">

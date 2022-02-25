@@ -144,7 +144,8 @@ class ApplicationController extends Controller
         $ApplicationData = Application::find($id);
         $ApplicationData->status_id = 2;
         $ApplicationData->save();
-        return redirect()->route('admin.admin_application');
+        
+        return redirect()->route('send_email',['id'=>$id]);
     }
 
     /**

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -133,14 +133,6 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
     Route::post('logout','Auth\AuthenticatedSessionController@destroy')->name('logout');
 });
 
-Route::get('/send-mail', function () {
-
-    $details = [
-        'title' => 'Paybull Evrak Yükleme',
-        'body' => 'Başvurunuz kabul edilmiştir. Lütfen aşağıdaki linke tıklayarak evrakları yükleyebilirsiniz.'.'https://vedatkurtay.medium.com/laravel-8-ile-e-mail-g%C3%B6nderimi-4f6516d5833a'
-    ];
-
-    Mail::to('cihat-cy@hotmail.com')->send(new \App\Mail\EvrakEklemeMail($details));
-
-    dd("Email gönderildi!");
-});
+Route::get('send-mail/{id}', [\App\Http\Controllers\MailControllere::class, 'send'])->name('send_email');
+Route::get('send-mail-p/{id}', [\App\Http\Controllers\MailControllere::class, 'sendPersonal'])->name('send_email_perso');
+Route::get('evrak/yukle/{id}', [\App\Http\Controllers\MailControllere::class, 'upload']);

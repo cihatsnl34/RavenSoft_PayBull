@@ -7,9 +7,12 @@ $.ajax({
     type: "GET",
     url: "/admin/getInfo",
     success: function (data) {
-        demoOptions["radial-bar-subscriptions"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
-        demoOptions["radial-bar-payments"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
-        demoOptions["radial-bar-inventory"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+        demoOptions["radial-bar-beklenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
+        demoOptions["radial-bar-evrakBekleyen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
+        demoOptions["radial-bar-tamamlanan"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+        demoOptions["radial-bar-evrakIncelenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakIncelenen"];
+        demoOptions["radial-bar-eksikEvrak"].plotOptions.radialBar.dataLabels.total.label = data.msg["eksikEvrak"];
+        demoOptions["radial-bar-redEdilen"].plotOptions.radialBar.dataLabels.total.label = data.msg["redEdilen"];
         updateCharts();
     },
 });
@@ -18,9 +21,12 @@ setInterval(function () {
         type: "GET",
         url: "/admin/getInfo",
         success: function (data) {
-            demoOptions["radial-bar-subscriptions"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
-            demoOptions["radial-bar-payments"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
-            demoOptions["radial-bar-inventory"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+            demoOptions["radial-bar-beklenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
+            demoOptions["radial-bar-evrakBekleyen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
+            demoOptions["radial-bar-tamamlanan"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+            demoOptions["radial-bar-evrakIncelenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakIncelenen"];
+            demoOptions["radial-bar-eksikEvrak"].plotOptions.radialBar.dataLabels.total.label = data.msg["eksikEvrak"];
+            demoOptions["radial-bar-redEdilen"].plotOptions.radialBar.dataLabels.total.label = data.msg["redEdilen"];
             updateCharts();
         },
     });
@@ -28,9 +34,12 @@ setInterval(function () {
         type: "GET",
         url: "/personal/getInfo",
         success: function (data) {
-            demoOptions["radial-bar-subscriptions"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
-            demoOptions["radial-bar-payments"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
-            demoOptions["radial-bar-inventory"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+            demoOptions["radial-bar-beklenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
+            demoOptions["radial-bar-evrakBekleyen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
+            demoOptions["radial-bar-tamamlanan"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+            demoOptions["radial-bar-evrakIncelenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakIncelenen"];
+            demoOptions["radial-bar-eksikEvrak"].plotOptions.radialBar.dataLabels.total.label = data.msg["eksikEvrak"];
+            demoOptions["radial-bar-redEdilen"].plotOptions.radialBar.dataLabels.total.label = data.msg["redEdilen"];
             updateCharts();
         },
     });
@@ -40,9 +49,12 @@ $.ajax({
     type: "GET",
     url: "/personal/getInfo",
     success: function (data) {
-        demoOptions["radial-bar-subscriptions"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
-        demoOptions["radial-bar-payments"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
-        demoOptions["radial-bar-inventory"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+        demoOptions["radial-bar-beklenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["beklenen"];
+        demoOptions["radial-bar-evrakBekleyen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakBekleyen"];
+        demoOptions["radial-bar-tamamlanan"].plotOptions.radialBar.dataLabels.total.label = data.msg["tamamlanan"];
+        demoOptions["radial-bar-evrakIncelenen"].plotOptions.radialBar.dataLabels.total.label = data.msg["evrakIncelenen"];
+        demoOptions["radial-bar-eksikEvrak"].plotOptions.radialBar.dataLabels.total.label = data.msg["eksikEvrak"];
+        demoOptions["radial-bar-redEdilen"].plotOptions.radialBar.dataLabels.total.label = data.msg["redEdilen"];
         updateCharts();
     },
 });
@@ -345,16 +357,16 @@ let demoOptions = {
         },
     },
 
-    "radial-bar-subscriptions": {
+    "radial-bar-beklenen": {
         series: [54],
         chart: {
             type: "radialBar",
-            height: 230,
+            height: 170,
             sparkline: {
                 enabled: true,
             },
         },
-        colors: ["#FF8B36"],
+        colors: ["#727355"],
         stroke: {
             lineCap: "round",
         },
@@ -373,7 +385,7 @@ let demoOptions = {
                 },
                 dataLabels: {
                     value: {
-                        fontSize: 16,
+                        fontSize: 12,
                     },
                     total: {
                         show: true,
@@ -384,41 +396,13 @@ let demoOptions = {
                 },
             },
         },
-        __variants: {
-            orange: {
-                colors: ["#F67A28"],
-                plotOptions: {
-                    radialBar: {
-                        startAngle: -120,
-                        endAngle: 240,
-                        hollow: {
-                            margin: 15,
-                            size: "65%",
-                        },
-                        track: {
-                            background: "#EBEAFC",
-                            strokeWidth: "97%",
-                            margin: 5,
-                        },
-                        dataLabels: {
-                            total: {
-                                show: true,
-                                label: "$16,250",
-                                fontSize: 24,
-                                formatter: () => "Total inventory",
-                            },
-                        },
-                    },
-                },
-            },
-        },
     },
 
-    "radial-bar-payments": {
+    "radial-bar-evrakBekleyen": {
         series: [54],
         chart: {
             type: "radialBar",
-            height: 230,
+            height: 170,
             sparkline: {
                 enabled: true,
             },
@@ -442,7 +426,7 @@ let demoOptions = {
                 },
                 dataLabels: {
                     value: {
-                        fontSize: 16,
+                        fontSize: 12,
                     },
                     total: {
                         show: true,
@@ -453,108 +437,12 @@ let demoOptions = {
                 },
             },
         },
-        __variants: {
-            orange: {
-                colors: ["#F67A28"],
-                plotOptions: {
-                    radialBar: {
-                        startAngle: -120,
-                        endAngle: 240,
-                        hollow: {
-                            margin: 15,
-                            size: "65%",
-                        },
-                        track: {
-                            background: "#EBEAFC",
-                            strokeWidth: "97%",
-                            margin: 5,
-                        },
-                        dataLabels: {
-                            total: {
-                                show: true,
-                                label: "$16,250",
-                                fontSize: 24,
-                                formatter: () => "Total inventory",
-                            },
-                        },
-                    },
-                },
-            },
-        },
     },
-    "radial-bar-inventory": {
+    "radial-bar-tamamlanan": {
         series: [54],
         chart: {
             type: "radialBar",
-            height: 230,
-            sparkline: {
-                enabled: true,
-            },
-        },
-        colors: ["#326BFF"],
-        stroke: {
-            lineCap: "round",
-        },
-        plotOptions: {
-            radialBar: {
-                startAngle: -120,
-                endAngle: 545,
-                hollow: {
-                    margin: 15,
-                    size: "70%",
-                },
-                track: {
-                    background: "#EBEAFC",
-                    strokeWidth: "97%",
-                    margin: 5,
-                },
-                dataLabels: {
-                    value: {
-                        fontSize: 16,
-                    },
-                    total: {
-                        show: true,
-                        label: 0,
-                        fontSize: 28,
-                        formatter: () => "Tamamlananlar",
-                    },
-                },
-            },
-        },
-        __variants: {
-            orange: {
-                colors: ["#F67A28"],
-                plotOptions: {
-                    radialBar: {
-                        startAngle: -120,
-                        endAngle: 240,
-                        hollow: {
-                            margin: 15,
-                            size: "65%",
-                        },
-                        track: {
-                            background: "#EBEAFC",
-                            strokeWidth: "97%",
-                            margin: 5,
-                        },
-                        dataLabels: {
-                            total: {
-                                show: true,
-                                label: "996",
-                                fontSize: 24,
-                                formatter: () => "Total",
-                            },
-                        },
-                    },
-                },
-            },
-        },
-    },
-    "radial-bar-sales": {
-        series: [54],
-        chart: {
-            type: "radialBar",
-            height: 230,
+            height: 170,
             sparkline: {
                 enabled: true,
             },
@@ -578,45 +466,140 @@ let demoOptions = {
                 },
                 dataLabels: {
                     value: {
-                        fontSize: 16,
+                        fontSize: 12,
                     },
                     total: {
                         show: true,
-                        label: "$13,567",
+                        label: 0,
                         fontSize: 28,
-                        formatter: () => "Total sales",
+                        formatter: () => "Tamamlananlar",
                     },
                 },
             },
         },
-        __variants: {
-            orange: {
-                colors: ["#F67A28"],
-                plotOptions: {
-                    radialBar: {
-                        startAngle: -120,
-                        endAngle: 240,
-                        hollow: {
-                            margin: 15,
-                            size: "65%",
-                        },
-                        track: {
-                            background: "#EBEAFC",
-                            strokeWidth: "97%",
-                            margin: 5,
-                        },
-                        dataLabels: {
-                            total: {
-                                show: true,
-                                label: "996",
-                                fontSize: 24,
-                                formatter: () => "Total",
-                            },
-                        },
+    },
+    "radial-bar-evrakIncelenen": {
+        series: [54],
+        chart: {
+            type: "radialBar",
+            height: 170,
+            sparkline: {
+                enabled: true,
+            },
+        },
+        colors: ["#326BFF"],
+        stroke: {
+            lineCap: "round",
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -120,
+                endAngle: 545,
+                hollow: {
+                    margin: 15,
+                    size: "70%",
+                },
+                track: {
+                    background: "#EBEAFC",
+                    strokeWidth: "97%",
+                    margin: 5,
+                },
+                dataLabels: {
+                    value: {
+                        fontSize: 12,
+                    },
+                    total: {
+                        show: true,
+                        label:0,
+                        fontSize: 28,
+                        formatter: () => "Evrak Inceleniyor",
                     },
                 },
             },
         },
+
+    },
+    "radial-bar-eksikEvrak": {
+        series: [54],
+        chart: {
+            type: "radialBar",
+            height: 170,
+            sparkline: {
+                enabled: true,
+            },
+        },
+        colors: ["#FF8B36"],
+        stroke: {
+            lineCap: "round",
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -120,
+                endAngle: 545,
+                hollow: {
+                    margin: 15,
+                    size: "70%",
+                },
+                track: {
+                    background: "#EBEAFC",
+                    strokeWidth: "97%",
+                    margin: 5,
+                },
+                dataLabels: {
+                    value: {
+                        fontSize: 12,
+                    },
+                    total: {
+                        show: true,
+                        label: 0,
+                        fontSize: 28,
+                        formatter: () => "Eksik Evrak",
+                    },
+                },
+            },
+        },
+
+    },
+    "radial-bar-redEdilen": {
+        series: [54],
+        chart: {
+            type: "radialBar",
+            height: 170,
+            sparkline: {
+                enabled: true,
+            },
+        },
+        colors: ["#f54242"],
+        stroke: {
+            lineCap: "round",
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -120,
+                endAngle: 545,
+                hollow: {
+                    margin: 15,
+                    size: "70%",
+                },
+                track: {
+                    background: "#EBEAFC",
+                    strokeWidth: "97%",
+                    margin: 5,
+                },
+                dataLabels: {
+                    value: {
+                        fontSize: 12,
+                    },
+                    total: {
+                        show: true,
+                        label: 0,
+                        fontSize: 28,
+                        formatter: () => "Red Edilenler",
+                    },
+                },
+            },
+        },
+
     },
     donut: {
         series: [2445, 2445, 2445],
@@ -703,4 +686,3 @@ function updateCharts() {
         }
     });
 }
-

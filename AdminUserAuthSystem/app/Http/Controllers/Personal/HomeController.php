@@ -29,7 +29,8 @@ class HomeController extends Controller
         $ApplicationData = Application::find($id);
         $ApplicationData->status_id = 2; // 2-> evrak bekleniyor
         $ApplicationData->save();
-        return redirect()->route('personal.dashboard');
+        return redirect()->route('send_email_perso',['id'=>$id]);
+        
     }
     public function store(Request $request)
     {
