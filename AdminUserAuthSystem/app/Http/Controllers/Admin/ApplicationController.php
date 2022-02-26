@@ -168,7 +168,7 @@ class ApplicationController extends Controller
         $ApplicationData->city = $request->input('city');
         $ApplicationData->country = $request->input('country');
         $ApplicationData->companyName = $request->input('companyName');
-        $ApplicationData->update_at = $update;
+        $ApplicationData->updated_at = $update;
         $ApplicationData->save();
         return redirect()->route('admin.admin_application');
     }

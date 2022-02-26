@@ -66,7 +66,7 @@ class HomeController extends Controller
         $ApplicationData->city = $request->input('city');
         $ApplicationData->country = $request->input('country');
         $ApplicationData->companyName = $request->input('companyName');
-        $ApplicationData->update_at= $update;
+        $ApplicationData->updated_at= $update;
         $ApplicationData->save();
         return redirect()->route('personal.dashboard');
     }
@@ -125,13 +125,13 @@ class HomeController extends Controller
 
         return response()->json(array('msg'=> $msg ), 200);
     }
-    public function completed(Application $application, $id)
+    public function completed(Request $request,Application $application,$id)
     {
         $ApplicationData = Application::find($id);
-        $ApplicationData->status_id = 4;
+        $ApplicationData->status_id = $request->input('status');
         $ApplicationData->save();
         
-        return redirect()->route('admin.admin_application');
+        return redirect()->route('personal.dashboard',);
     }
 
 }
