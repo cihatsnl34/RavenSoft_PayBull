@@ -14,6 +14,7 @@
       </div>
       <div class="mb-8">
         <label class="block mb-2 text-coolGray-800 font-medium leading-6" for="">Card Details</label>
+     
         <input value="{{$ApplicationData->cardDetails}}" class="block h-12 w-full py-2 px-3 appearance-none border border-coolGray-200 rounded-lg shadow-md text-coolGray-300 leading-6 placeholder-coolGray-300 focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" name = "cardDetails" type="text" placeholder="XXXX-XXXX-XXXX-XXXX"></div>
       <div class="flex flex-wrap -mx-4 mb-8">
         <div class="w-full md:w-1/3 px-4 mb-8 md:mb-0">

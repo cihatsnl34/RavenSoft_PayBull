@@ -19,7 +19,7 @@ class PersonalsController extends Controller
         $personalsList = DB::select('select * from personals');
         return view('admin.personals.personals',['personalsList'=>$personalsList]);
     }
-
+ 
     /**
      * Store a newly created resource in storage.
      *

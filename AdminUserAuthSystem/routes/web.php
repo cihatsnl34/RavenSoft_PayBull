@@ -31,7 +31,8 @@ require __DIR__.'/auth.php';
 
 //Admin
 Route::redirect('/admin','/admin/login');
-Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function ()
+{
     Route::namespace('Auth')->middleware('guest:admin')->group(function () {
         Route::get('login','AuthenticatedSessionController@create')->name('login');
         Route::post('login','AuthenticatedSessionController@store')->name('adminlogin');
