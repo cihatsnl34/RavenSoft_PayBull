@@ -15,8 +15,8 @@
 </head>
 <body>
 
-
-
+ 
+  <h2 class="mb-12 text-9xl md:text-10xl xl:text-11xl leading-tight font-heading font-medium"><center><img style="width:40%" src="{{asset('assets')}}/admin/images/PaybullLogo.png"></center></h2>
 <div class="max-w-4xl p-6 sm:p-10 mx-auto bg-coolGray-50 rounded-lg">
   <h1>Şirket ismi : {{$data->companyName}}</h1><br><br>
     <form action="{{ route('documents_add',['applications_id'=>$data->id]) }}" method="POST" enctype="multipart/form-data">

@@ -14,13 +14,58 @@ use Illuminate\Support\Facades\Response;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+ 
+ 
 //Anasayfa
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home.index');
+})->name('home');
+#Ürünler 
+Route::get('/sanal-pos', function () {
+    return view('home.sanal-pos');
+})->name('sanal-pos');
+Route::get('/link-odeme', function () {
+    return view('home.link-odeme');
+})->name('link-odeme');
+Route::get('/mobil-pos', function () {
+    return view('home.mobil-pos');
+})->name('mobil-pos');
+Route::get('/manuel-pos', function () {
+    return view('home.manuel-pos');
+})->name('manuel-pos');
+
+#Hakkımızda
+Route::get('/hakkimizda', function () {
+    return view('home.hakkimizda');
+})->name('hakkimizda');
+Route::get('/sertifikalarimiz', function () {
+    return view('home.sertifikalarimiz');
+})->name('sertifikalarimiz');
+#İş ortakları
+Route::get('/cozum-ortaklari', function () {
+    return view('home.cozum-ortaklari');
+})->name('cozum-ortaklari');
+#İletişim
+Route::get('/iletisim', function () {
+    return view('home.iletisim');
+})->name('iletisim');
+#Footer Entegrasyon
+Route::get('/entegrasyonlar', function () {
+    return view('home.entegrasyonlar');
+})->name('entegrasyonlar');
+//Basvuru
+Route::get('/basvuru', function () {
+    return view('home.basvuru');
+})->name('basvuru');
+Route::post('basvuru/add',[\App\Http\Controllers\BasvuruController::class, 'store'])->name('basvuru_add');
+//Hızlı Basvuru
+Route::get('/hizli-basvuru', function () {
+    return view('home.hizli_basvuru');
+})->name('hizli-basvuru');
+Route::post('hizli-basvuru/add',[\App\Http\Controllers\BasvuruController::class, 'hizli_basvuru'])->name('hizli_basvuru_add');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -112,6 +157,7 @@ Route::namespace('Personal')->prefix('personal')->name('personal.')->group(funct
 
 
         //Başvurular
+        Route::get('application/approve/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'approve'])->name('personal_application_approve');
         Route::get('application/delete/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'destroy'])->name('personal_application_delete');
         Route::post('application/update/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'update'])->name('personal_application_update');
         Route::get('application/edit/{id}',[\App\Http\Controllers\Personal\HomeController::class, 'edit'])->name('personal_application_edit');
@@ -144,3 +190,4 @@ Route::get('evrak/yukle/{id}', [\App\Http\Controllers\MailControllere::class, 'u
 Route::post('evrak/yukle/{applications_id}',[\App\Http\Controllers\MailControllere::class, 'store'])->name('documents_add');
 Route::get('evrak/sil/{id}',[\App\Http\Controllers\MailControllere::class, 'destroy'])->name('documents_delete');
 Route::get('evrak/approve/{applications_id}',[\App\Http\Controllers\MailControllere::class, 'approve'])->name('documents_approve');
+Route::post('mail', [\App\Http\Controllers\MailControllere::class, 'mail'])->name('mail');

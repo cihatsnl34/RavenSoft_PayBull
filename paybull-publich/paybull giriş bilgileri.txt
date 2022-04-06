@@ -1,0 +1,13 @@
+paybull32@paybull.com
+Pay?[2022Bull]*
+
+veritabanı kullanıcı adı: paybull3
+64Nji+rS82Z;xF
+
+veritabanı kullanıcı adı: adminPaybull
+64Nji+rS82Z;xF
+
+Kontrol Paneli Giriş Bilgileriniz:
+Kontrol paneli: http://host113.ni.net.tr:2082
+Kullanıcı adı: paybull3
+Parola: Pay?[2022Bull]*

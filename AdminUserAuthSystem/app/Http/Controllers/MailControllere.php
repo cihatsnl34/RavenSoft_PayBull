@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Documents;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -13,6 +13,7 @@ class MailControllere extends Controller
 {
     public function send($id)
     {
+       
         $ApplicationData = Application::find($id);
         $details = [
             'title' => 'Paybull Evrak Yükleme',
@@ -27,7 +28,7 @@ class MailControllere extends Controller
     }
 
     public function sendPersonal($id)
-    {
+    { 
         $ApplicationData = Application::find($id);
         $details = [
             'title' => 'Paybull Evrak Yükleme',
@@ -36,12 +37,31 @@ class MailControllere extends Controller
             'link' => 'http://127.0.0.1:8000/evrak/yukle/'.$id
         ];
     
-        Mail::to($ApplicationData->mail)->send(new \App\Mail\EvrakEklemeMail($details));
+        Mail::to($ApplicationData->email)->send(new \App\Mail\EvrakEklemeMail($details));
     
        // dd("Email gönderildi!");
        return redirect()->route('personal.dashboard');
     }
+    public function mail(Request $request)
+    {
 
+        $details = [
+            'title' => 'Paybull User Mail',
+            'name' => $request->name,
+            'mail' =>$request->mail,
+            'gsm' =>$request->gsm,
+            'website' =>$request->website,
+            'body' => $request->content,
+            
+        ];
+    
+        Mail::to('cihat-cy@hotmail.com')->send(new \App\Mail\SendMail($details));
+    
+       // dd("Email gönderildi!");
+       return redirect()->route('iletisim');
+    
+        
+    }
     public function upload($id)
     {
         $data = Application::find($id);
@@ -66,6 +86,9 @@ class MailControllere extends Controller
         $data->imzaSirküleri =$request->file('imzaSirküleri')->storeAs($filename,'imzaSirküleri.pdf');
         $data->vergiLevhasi = $request->file('vergiLevhasi')->storeAs($filename,'vergiLevhasi.pdf');
         $data->save();
+        $ApplicationData = Application::find($applications_id);
+        $ApplicationData->status_id = 3;
+        $ApplicationData->save();    
         //return redirect()->route('evrak_yukle/',['id'=>$applications_id]);
         return back();
         //'/'.$applications_id

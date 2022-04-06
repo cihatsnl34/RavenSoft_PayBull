@@ -51,16 +51,33 @@ class DocumentsController extends Controller
         $data->vergiLevhasi = Storage::putFile('documents1',$request->file('vergiLevhasi'));
         */
         $filename =$applications_id;
-        $data->firmaYetkiliKimlik = $request->file('firmaYetkiliKimlik')->storeAs($filename,'firmaYetkiliKimlik.pdf');
-        $data->digerYetkiliKimlik = $request->file('digerYetkiliKimlik')->storeAs($filename,'digerYetkiliKimlik.pdf');
-        $data->adresBelgesi = $request->file('adresBelgesi')->storeAs($filename,'adresBelgesi.pdf');
+        if($request->hasFile('firmaYetkiliKimlik')){
+        foreach ($request->firmaYetkiliKimlik as $file) {
+        $fileAd = $file->getClientOriginalName();
+        $filesize = $file->getClientSize();
+        $file->storeAs($filename,$fileAd);
+
+        $data->firmaYetkiliKimlik = $fileAd;
+
+        }}
+        if($request->hasFile('digerYetkiliKimlik')){
+        foreach ($request->digerYetkiliKimlik as $file) {
+        $fileAd = $file->getClientOriginalName();
+        $file->storeAs($filename,$fileAd);
+
+        $data->digerYetkiliKimlik = $fileAd;
+
+        }}
+        $fileAdresBelgesi =$request->adresBelgesi->getClientOriginalName();
+
+        $data->adresBelgesi = $request->file('adresBelgesi')->storeAs($filename,$fileAdresBelgesi);
         $data->imzaSirküleri =$request->file('imzaSirküleri')->storeAs($filename,'imzaSirküleri.pdf');
         $data->vergiLevhasi = $request->file('vergiLevhasi')->storeAs($filename,'vergiLevhasi.pdf');
         $data->save();
         return redirect()->route('admin.admin_documents_create',['applications_id'=>$applications_id]);
         
     }
-    
+     
     public function download($applications_id)
     {
         return Storage::download('maxresdefault.jpg');

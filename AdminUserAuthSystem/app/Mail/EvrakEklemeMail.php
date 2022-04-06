@@ -21,7 +21,7 @@ class EvrakEklemeMail extends Mailable
     {
         $this->details = $details;
     }
-
+ 
     /**
      * Build the message.
      *

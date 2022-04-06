@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap">
   <link rel="stylesheet" href="{{asset('assets')}}/admin/css/tailwind/tailwind.min.css">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-tailwind.png">
+  <link rel="shortcut icon" href="{{asset('assets')}}/admin/images/PaybullLogo.png">
   <script src="{{asset('assets')}}/admin/js/main.js"></script>
   @yield('css')
   @yield('javascript')

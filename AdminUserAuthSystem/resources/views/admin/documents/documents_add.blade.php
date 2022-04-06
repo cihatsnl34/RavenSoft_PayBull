@@ -23,10 +23,10 @@
       <div class="flex flex-wrap -mx-4 mb-8">
         <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0">
           <label class="block mb-2 text-coolGray-800 font-medium leading-6" for="">Firma Yetkilisinin Arkalı Önlü Kimlik Fotokopisi</label>
-          <input class="block h-12 w-full py-2 px-3 appearance-none border border-coolGray-200 rounded-lg shadow-md text-coolGray-300 leading-6 placeholder-coolGray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" name = "firmaYetkiliKimlik" type="file" placeholder="Dosya Seçilmedi"></div>
+          <input multiple class="block h-12 w-full py-2 px-3 appearance-none border border-coolGray-200 rounded-lg shadow-md text-coolGray-300 leading-6 placeholder-coolGray-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" name = "firmaYetkiliKimlik[]" type="file" placeholder="Dosya Seçilmedi"></div>
         <div class="w-full md:w-1/2 px-4">
-          <label class="block mb-2 text-coolGray-800 font-medium leading-6" for="">Diğer Firma Yetkilisinin Arkalı Önlü Kimlik Fotokopisi</label>
-          <input class="block h-12 w-full py-2 px-3 appearance-none border border-coolGray-200 rounded-lg shadow-md text-coolGray-300 leading-6 placeholder-coolGray-300 focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" name = "digerYetkiliKimlik" type="file" placeholder="Dosya Seçilmedi"></div>
+          <label  class="block mb-2 text-coolGray-800 font-medium leading-6" for="">Diğer Firma Yetkilisinin Arkalı Önlü Kimlik Fotokopisi</label>
+          <input  class="block h-12 w-full py-2 px-3 appearance-none border border-coolGray-200 rounded-lg shadow-md text-coolGray-300 leading-6 placeholder-coolGray-300 focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" name = "digerYetkiliKimlik" type="file" placeholder="Dosya Seçilmedi"></div>
       </div>
       <div class="mb-8">
         <label class="block mb-2 text-coolGray-800 font-medium leading-6" for="">Adres Belgesi</label>
